@@ -1,0 +1,25 @@
+;DEVUELVE UNA LISTA DE POSIBLES VECINOS PARA UNA POSICION
+(define (vecinos posicion)
+  (let ((fila (car posicion))
+        (columna (cadr posicion)))
+    (list (list (- fila 1) columna)
+          (list (+ fila 1) columna)
+          (list fila (- columna 1))
+          (list fila (+ columna 1)))))
+
+;;CONFIRMA SI UNA POSICION ESTA DISPONIBLE EN EL TABLERO
+(define (posicion-valida? pos tablero)
+  (cond
+    ((null? tablero) #f)
+    ((equal? pos (car tablero)) #t) 
+    (else (posicion-valida? pos (cdr tablero)))
+  )
+)
+
+;TABLEOR PARA PROBAR
+(define tablero-5x5
+  '((0 0) (0 1) (0 2) (0 3) (0 4)
+    (1 0) (1 1) (1 2) (1 3) (1 4)
+    (2 0) (2 1) (2 2) (2 3) (2 4)
+    (3 0) (3 1) (3 2) (3 3) (3 4)
+    (4 0) (4 1) (4 2) (4 3) (4 4)))
